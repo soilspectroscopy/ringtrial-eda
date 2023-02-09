@@ -31,6 +31,20 @@ The workspace development is defined by:
 
 ## Spectral visualization
 
+Instrument 3 is `Woodwell vertex`.
+
+<img src="outputs/check_spectra/plot_mir_instrument3_raw.png" width=100% heigth=100%>  
+
+<img src="outputs/check_spectra/plot_mir_instrument3_BOC.png" width=100% heigth=100%>  
+
+<img src="outputs/check_spectra/plot_mir_instrument3_SG1stDer.png" width=100% heigth=100%>  
+
+<img src="outputs/check_spectra/plot_mir_instrument3_SNV.png" width=100% heigth=100%>  
+
+<img src="outputs/check_spectra/plot_mir_instrument3_SNVplusSG1stDer.png" width=100% heigth=100%>  
+
+<img src="outputs/check_spectra/plot_mir_instrument3_wavelet.png" width=100% heigth=100%>  
+
 ## Principal component analysis
 
 ## Correlation spectra
