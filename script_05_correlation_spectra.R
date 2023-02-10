@@ -347,3 +347,72 @@ final.plot <- cowplot::plot_grid(p1, p2, p3, p4, p5, p6, ncol = 2, labels = "") 
 cowplot::ggsave2(paste0(dir.figures, paste0("plot_correlation_spectra_allGrid.png")),
                  final.plot, dpi = 200, width = 7, height = 8, units = "in", scale = 1)
 
+
+## allMIRspectra SST
+
+all.mirspectra.SST <- read_csv(paste0(dir.preprocessed, "RT_STD_allMIRspectra_SST.csv"))
+
+all.mirspectra.SST <- all.mirspectra.SST %>%
+  mutate(organization = recode(organization, !!!new_codes)) %>%
+  mutate(organization = factor(organization, levels = as.character(new_codes)))
+
+all.mirspectra.SST
+
+all.mirspectra.SST %>%
+  distinct(organization) %>%
+  pull()
+
+## Correlation with reference, i.e. KSSL
+
+all.mirspectra.SST.kssl.beforeSST <- all.mirspectra.SST %>%
+  # filter(organization == "KSSL") %>%
+  filter(organization == 16) %>%
+  select(-organization, -ct_subset)
+
+all.mirspectra.SST.cor.beforeSST <- all.mirspectra.SST %>%
+  nest(data1 = -all_of(c("organization", "ct_subset"))) %>%
+  # filter(organization != "KSSL") %>%
+  filter(organization != 16) %>%
+  filter(ct_subset == "beforeSST") %>%
+  mutate(data2 = list(all.mirspectra.SST.kssl.beforeSST)) %>%
+  mutate(correlation = map2(.x = data1, .y = data2, .f = ~cor_fun(.x, .y))) %>%
+  select(organization, ct_subset, correlation) %>%
+  unnest(correlation)
+
+all.mirspectra.SST.kssl.afterSST <- all.mirspectra.SST %>%
+  # filter(organization == "KSSL") %>%
+  filter(organization == 16) %>%
+  select(-organization, -ct_subset)
+
+all.mirspectra.SST.cor.afterSST <- all.mirspectra.SST %>%
+  nest(data1 = -all_of(c("organization", "ct_subset"))) %>%
+  # filter(organization != "KSSL") %>%
+  filter(organization != 16) %>%
+  filter(ct_subset == "afterSST") %>%
+  mutate(data2 = list(all.mirspectra.SST.kssl.afterSST)) %>%
+  mutate(correlation = map2(.x = data1, .y = data2, .f = ~cor_fun(.x, .y))) %>%
+  select(organization, ct_subset, correlation) %>%
+  unnest(correlation)
+
+all.mirspectra.SST.cor <- bind_rows(all.mirspectra.SST.cor.beforeSST,
+                                    all.mirspectra.SST.cor.afterSST) %>%
+  mutate(ct_subset = factor(ct_subset, levels = c("beforeSST", "afterSST")))
+
+# Visualization
+
+p.cor.all <- all.mirspectra.SST.cor %>%
+  mutate(organization = factor(organization, levels = as.character(new_codes))) %>%
+  ggplot(aes(x = wavenumber, y = cor, color = organization)) +
+  geom_line(size = 0.25) +
+  facet_wrap(~ct_subset, ncol = 1) +
+  labs(x = bquote(Wavenumber~(cm^-1)), y = "Pearson's correlation",
+       title = "Correlation with reference instrument - SST spectra", color = "") +
+  scale_x_continuous(breaks = c(650, 1200, 1800, 2400, 3000, 3600, 4000),
+                     trans = "reverse") +
+  theme_light() +
+  theme(legend.position = "bottom") +
+  guides(color = guide_legend(nrow = 2, byrow = TRUE)); p.cor.all
+
+ggsave(paste0(dir.figures, paste0("plot_correlation_spectra_SST_all.png")),
+       p.cor.all, dpi = 300, width = 6, height = 7,
+       units = "in", scale = 1)
