@@ -24,6 +24,12 @@ new_codes <- metadata %>%
 
 names(new_codes) <- pull(metadata, folder_name)
 
+organizations <- metadata %>%
+  pull(folder_name)
+
+codes <- metadata %>%
+  pull(code)
+
 # Clean old figures
 do.call(file.remove, list(list.files(dir.figures, full.names = TRUE)))
 
@@ -35,12 +41,6 @@ all.mirspectra.raw <- all.mirspectra.raw %>%
   mutate(organization = factor(organization, levels = as.character(new_codes)))
 
 all.mirspectra.raw
-
-organizations <- all.mirspectra.raw %>%
-  distinct(organization) %>%
-  pull(organization)
-
-organizations
 
 for(i in 1:length(organizations)) {
   
@@ -73,12 +73,6 @@ all.mirspectra.BOC <- all.mirspectra.BOC %>%
   mutate(organization = factor(organization, levels = as.character(new_codes)))
 
 all.mirspectra.BOC
-
-organizations <- all.mirspectra.BOC %>%
-  distinct(organization) %>%
-  pull(organization)
-
-organizations
 
 for(i in 1:length(organizations)) {
   
@@ -113,12 +107,6 @@ all.mirspectra.SG1stDer <- all.mirspectra.SG1stDer %>%
 
 all.mirspectra.SG1stDer
 
-organizations <- all.mirspectra.SG1stDer %>%
-  distinct(organization) %>%
-  pull(organization)
-
-organizations
-
 for(i in 1:length(organizations)) {
   
   iorganization <- organizations[i]
@@ -152,12 +140,6 @@ all.mirspectra.SNV <- all.mirspectra.SNV %>%
 
 all.mirspectra.SNV
 
-organizations <- all.mirspectra.SNV %>%
-  distinct(organization) %>%
-  pull(organization)
-
-organizations
-
 for(i in 1:length(organizations)) {
   
   iorganization <- organizations[i]
@@ -190,12 +172,6 @@ all.mirspectra.SNVplusSG1stDer <- all.mirspectra.SNVplusSG1stDer %>%
   mutate(organization = factor(organization, levels = as.character(new_codes)))
 
 all.mirspectra.SNVplusSG1stDer
-
-organizations <- all.mirspectra.SNVplusSG1stDer %>%
-  distinct(organization) %>%
-  pull(organization)
-
-organizations
 
 for(i in 1:length(organizations)) {
   
@@ -231,12 +207,6 @@ all.mirspectra.wavelet <- all.mirspectra.wavelet %>%
 
 all.mirspectra.wavelet
 
-organizations <- all.mirspectra.wavelet %>%
-  distinct(organization) %>%
-  pull(organization)
-
-organizations
-
 for(i in 1:length(organizations)) {
   
   iorganization <- organizations[i]
@@ -269,12 +239,6 @@ for(i in 1:length(organizations)) {
 }
 
 ## Composite plot
-
-organizations <- metadata %>%
-  pull(folder_name)
-
-codes <- metadata %>%
-  pull(code)
 
 for(i in 1:length(organizations)) {
   

@@ -31,7 +31,7 @@ The workspace development is defined by:
 
 ## Spectral visualization
 
-Instrument 3 is `Woodwell vertex`.
+All instruments were plotted and are available at `outputs/check_spectra/plot_mir_instrument<number>_<preprocessing>.png`. A grid with all spectral variations is displayed below for instrument 3 (`Woodwell vertex`) as an illustration example.
 
 <img src="outputs/check_spectra/plot_mir_instrument3_allGrid.png" width=100% heigth=100%>  
 
