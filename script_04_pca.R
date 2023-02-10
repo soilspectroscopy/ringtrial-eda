@@ -100,7 +100,7 @@ p.loading <- pca.loadings.train %>%
   ggplot(aes(x = as.numeric(terms), y = loading, group = PC)) +
   geom_line(size = 0.5) +
   facet_wrap(~PC, ncol = 1) +
-  labs(x = bquote("Wavenumber"~cm^-1), y = "PCA loading",
+  labs(x = bquote(Wavenumber~(cm^-1)), y = "PCA loading",
        title = "Loadings of reference instrument - raw spectra") +
   scale_x_continuous(breaks = c(600, 1200, 1800, 2400, 3000, 3600, 4000)) +
   theme_light()
@@ -663,12 +663,12 @@ ggsave(paste0(dir.figures, paste0("plot_pca_scores_projection_wavelet_all.png"))
 
 ## Composite plot
 
-p1 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/pca_projection/plot_pca_scores_projection_raw_all.png"), scale = 1)
-p2 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/pca_projection/plot_pca_scores_projection_BOC_all.png"), scale = 1)
-p3 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/pca_projection/plot_pca_scores_projection_SG1stDer_all.png"), scale = 1)
-p4 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/pca_projection/plot_pca_scores_projection_SNV_all.png"), scale = 1)
-p5 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/pca_projection/plot_pca_scores_projection_SNVplusSG1stDer_all.png"), scale = 1)
-p6 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/pca_projection/plot_pca_scores_projection_wavelet_all.png"), scale = 1)
+p1 <- cowplot::ggdraw() + cowplot::draw_image(paste0(dir.figures, "plot_pca_scores_projection_raw_all.png"), scale = 1)
+p2 <- cowplot::ggdraw() + cowplot::draw_image(paste0(dir.figures, "plot_pca_scores_projection_BOC_all.png"), scale = 1)
+p3 <- cowplot::ggdraw() + cowplot::draw_image(paste0(dir.figures, "plot_pca_scores_projection_SG1stDer_all.png"), scale = 1)
+p4 <- cowplot::ggdraw() + cowplot::draw_image(paste0(dir.figures, "plot_pca_scores_projection_SNV_all.png"), scale = 1)
+p5 <- cowplot::ggdraw() + cowplot::draw_image(paste0(dir.figures, "plot_pca_scores_projection_SNVplusSG1stDer_all.png"), scale = 1)
+p6 <- cowplot::ggdraw() + cowplot::draw_image(paste0(dir.figures, "plot_pca_scores_projection_wavelet_all.png"), scale = 1)
 
 final.plot <- cowplot::plot_grid(p1, p2, p3, p4, p5, p6, ncol = 2, labels = "") +
   theme(plot.background = element_rect(fill = "white", colour = NA))

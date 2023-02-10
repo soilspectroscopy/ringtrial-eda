@@ -244,12 +244,12 @@ for(i in 1:length(organizations)) {
   
   icode <- codes[i]
   
-  p1 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/check_spectra/plot_mir_instrument", icode, "_raw.png"), scale = 1)
-  p2 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/check_spectra/plot_mir_instrument", icode, "_BOC.png"), scale = 1)
-  p3 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/check_spectra/plot_mir_instrument", icode, "_SG1stDer.png"), scale = 1)
-  p4 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/check_spectra/plot_mir_instrument", icode, "_SNV.png"), scale = 1)
-  p5 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/check_spectra/plot_mir_instrument", icode, "_SNVplusSG1stDer.png"), scale = 1)
-  p6 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/check_spectra/plot_mir_instrument", icode, "_wavelet.png"), scale = 1)
+  p1 <- cowplot::ggdraw() + cowplot::draw_image(paste0(dir.figures, "plot_mir_instrument", icode, "_raw.png"), scale = 1)
+  p2 <- cowplot::ggdraw() + cowplot::draw_image(paste0(dir.figures, "plot_mir_instrument", icode, "_BOC.png"), scale = 1)
+  p3 <- cowplot::ggdraw() + cowplot::draw_image(paste0(dir.figures, "plot_mir_instrument", icode, "_SG1stDer.png"), scale = 1)
+  p4 <- cowplot::ggdraw() + cowplot::draw_image(paste0(dir.figures, "plot_mir_instrument", icode, "_SNV.png"), scale = 1)
+  p5 <- cowplot::ggdraw() + cowplot::draw_image(paste0(dir.figures, "plot_mir_instrument", icode, "_SNVplusSG1stDer.png"), scale = 1)
+  p6 <- cowplot::ggdraw() + cowplot::draw_image(paste0(dir.figures, "plot_mir_instrument", icode, "_wavelet.png"), scale = 1)
   
   final.plot <- cowplot::plot_grid(p1, p2, p3, p4, p5, p6, ncol = 2, labels = "") +
     theme(plot.background = element_rect(fill = "white", colour = NA))
