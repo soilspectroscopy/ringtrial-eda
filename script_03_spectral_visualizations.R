@@ -44,7 +44,7 @@ all.mirspectra.raw
 
 for(i in 1:length(organizations)) {
   
-  iorganization <- organizations[i]
+  iorganization <- codes[i]
   
   p.export <- all.mirspectra.raw %>%
     filter(organization == iorganization) %>%
@@ -76,7 +76,7 @@ all.mirspectra.BOC
 
 for(i in 1:length(organizations)) {
   
-  iorganization <- organizations[i]
+  iorganization <- codes[i]
   
   p.export <- all.mirspectra.BOC %>%
     filter(organization == iorganization) %>%
@@ -109,7 +109,7 @@ all.mirspectra.SG1stDer
 
 for(i in 1:length(organizations)) {
   
-  iorganization <- organizations[i]
+  iorganization <- codes[i]
   
   p.export <- all.mirspectra.SG1stDer %>%
     filter(organization == iorganization) %>%
@@ -142,7 +142,7 @@ all.mirspectra.SNV
 
 for(i in 1:length(organizations)) {
   
-  iorganization <- organizations[i]
+  iorganization <- codes[i]
   
   p.export <- all.mirspectra.SNV %>%
     filter(organization == iorganization) %>%
@@ -175,7 +175,7 @@ all.mirspectra.SNVplusSG1stDer
 
 for(i in 1:length(organizations)) {
   
-  iorganization <- organizations[i]
+  iorganization <- codes[i]
   
   p.export <- all.mirspectra.SNVplusSG1stDer %>%
     filter(organization == iorganization) %>%
@@ -209,7 +209,7 @@ all.mirspectra.wavelet
 
 for(i in 1:length(organizations)) {
   
-  iorganization <- organizations[i]
+  iorganization <- codes[i]
   
   plot.data.rescaled <- all.mirspectra.wavelet %>%
     filter(organization == iorganization) %>%
@@ -242,8 +242,6 @@ for(i in 1:length(organizations)) {
 
 for(i in 1:length(organizations)) {
   
-  iorganization <- organizations[i]
-  
   icode <- codes[i]
   
   p1 <- cowplot::ggdraw() + cowplot::draw_image(paste0("outputs/check_spectra/plot_mir_instrument", icode, "_raw.png"), scale = 1)
@@ -259,6 +257,6 @@ for(i in 1:length(organizations)) {
   cowplot::ggsave2(paste0(dir.figures, paste0("plot_mir_instrument", icode, "_allGrid.png")),
                    final.plot, dpi = 200, width = 7, height = 8, units = "in", scale = 1)
   
-  cat("Exported plot for", iorganization, "\n")
+  cat("Exported plot for", icode, "\n")
   
 }
