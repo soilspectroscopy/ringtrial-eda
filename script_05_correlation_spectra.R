@@ -358,10 +358,6 @@ all.mirspectra.SST <- all.mirspectra.SST %>%
 
 all.mirspectra.SST
 
-all.mirspectra.SST %>%
-  distinct(organization) %>%
-  pull()
-
 ## Correlation with reference, i.e. KSSL
 
 all.mirspectra.SST.kssl.beforeSST <- all.mirspectra.SST %>%

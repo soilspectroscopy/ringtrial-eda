@@ -4,6 +4,7 @@ Soil spectroscopy ring trial
 -   <a href="#overview" id="toc-overview">Overview</a>
 -   <a href="#spectral-visualization"
     id="toc-spectral-visualization">Spectral visualization</a>
+-   <a href="#instances-check" id="toc-instances-check">Instances check</a>
 -   <a href="#principal-component-analysis"
     id="toc-principal-component-analysis">Principal component analysis</a>
 -   <a href="#correlation-spectra" id="toc-correlation-spectra">Correlation
@@ -49,6 +50,26 @@ A grid with all spectral variations is displayed below for instrument 8
 <!-- <img src="outputs/check_spectra/plot_mir_instrument8_SNV.png" width=100% heigth=100%>   -->
 <!-- <img src="outputs/check_spectra/plot_mir_instrument8_SNVplusSG1stDer.png" width=100% heigth=100%>   -->
 <!-- <img src="outputs/check_spectra/plot_mir_instrument8_wavelet.png" width=100% heigth=100%>   -->
+
+## Instances check
+
+All separate plots are available at
+`outputs/instance_spectra/plot_instance_comparison_<preprocessing>_<type>.png`
+with type being either for all instruments or 3 selected organizations.
+A grid with all plot variations is displayed below including a dedicated
+plot for evaluating the SST alignment.
+
+<img src="outputs/instance_spectra/plot_instance_comparison_allGrid.png" width=100% heigth=100%>
+
+<img src="outputs/instance_spectra/plot_instance_comparison_SST_all.png"
+    style="display:block;float:none;margin-left:auto;margin-right:auto;width:50%">
+
+<!-- <img src="outputs/instance_spectra/plot_instance_comparison_raw_all.png" width=100% heigth=100%>   -->
+<!-- <img src="outputs/instance_spectra/plot_instance_comparison_BOC_all.png" width=100% heigth=100%>   -->
+<!-- <img src="outputs/instance_spectra/plot_instance_comparison_SG1stDer_all.png" width=100% heigth=100%>   -->
+<!-- <img src="outputs/instance_spectra/plot_instance_comparison_SNV_all.png" width=100% heigth=100%>   -->
+<!-- <img src="outputs/instance_spectra/plot_instance_comparison_SNVplusSG1stDer_all.png" width=100% heigth=100%>   -->
+<!-- <img src="outputs/instance_spectra/plot_instance_comparison_wavelet_all.png" width=100% heigth=100%>   -->
 
 ## Principal component analysis
 
