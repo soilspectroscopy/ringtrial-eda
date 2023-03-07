@@ -9,6 +9,7 @@ library("resemble")
 ## Folders
 mnt.dir <- "~/projects/mnt-ringtrial/"
 dir.preprocessed <- paste0(mnt.dir, "preprocessed/")
+dir.dissimilarity <- paste0(mnt.dir, "dissimilarity/")
 
 dir.output <- "outputs/"
 dir.figures <- paste0(dir.output, "similarity/")
@@ -98,6 +99,8 @@ all.mirspectra.raw.dissim <- all.mirspectra.raw %>%
 
 all.mirspectra.raw.dissim
 
+write_csv(all.mirspectra.raw.dissim, paste0(dir.dissimilarity, "dissim_euclidean_raw.csv"))
+
 # Visualization
 p.dissim <- all.mirspectra.raw.dissim %>%
   ggplot(aes(x = organization, y = distance, color = organization)) +
@@ -138,6 +141,7 @@ all.mirspectra.BOC.dissim <- all.mirspectra.BOC %>%
 
 all.mirspectra.BOC.dissim
 
+write_csv(all.mirspectra.BOC.dissim, paste0(dir.dissimilarity, "dissim_euclidean_BOC.csv"))
 
 # Visualization
 p.dissim <- all.mirspectra.BOC.dissim %>%
@@ -179,6 +183,7 @@ all.mirspectra.SG1stDer.dissim <- all.mirspectra.SG1stDer %>%
 
 all.mirspectra.SG1stDer.dissim
 
+write_csv(all.mirspectra.SG1stDer.dissim, paste0(dir.dissimilarity, "dissim_euclidean_SG1stDer.csv"))
 
 # Visualization
 p.dissim <- all.mirspectra.SG1stDer.dissim %>%
@@ -220,6 +225,7 @@ all.mirspectra.SNV.dissim <- all.mirspectra.SNV %>%
 
 all.mirspectra.SNV.dissim
 
+write_csv(all.mirspectra.SNV.dissim, paste0(dir.dissimilarity, "dissim_euclidean_SNV.csv"))
 
 # Visualization
 p.dissim <- all.mirspectra.SNV.dissim %>%
@@ -261,6 +267,7 @@ all.mirspectra.SNVplusSG1stDer.dissim <- all.mirspectra.SNVplusSG1stDer %>%
 
 all.mirspectra.SNVplusSG1stDer.dissim
 
+write_csv(all.mirspectra.SNVplusSG1stDer.dissim, paste0(dir.dissimilarity, "dissim_euclidean_SNVplusSG1stDer.csv"))
 
 # Visualization
 p.dissim <- all.mirspectra.SNVplusSG1stDer.dissim %>%
@@ -303,6 +310,7 @@ all.mirspectra.wavelet.dissim <- all.mirspectra.wavelet %>%
 
 all.mirspectra.wavelet.dissim
 
+write_csv(all.mirspectra.wavelet.dissim, paste0(dir.dissimilarity, "dissim_euclidean_wavelet.csv"))
 
 # Visualization
 p.dissim <- all.mirspectra.wavelet.dissim %>%
@@ -371,6 +379,8 @@ all.mirspectra.SST.dissim.afterSST <- all.mirspectra.SST %>%
 all.mirspectra.SST.dissim <- bind_rows(all.mirspectra.SST.dissim.beforeSST,
                                        all.mirspectra.SST.dissim.afterSST) %>%
   mutate(ct_subset = factor(ct_subset, levels = c("beforeSST", "afterSST")))
+
+write_csv(all.mirspectra.SST.dissim.afterSST, paste0(dir.dissimilarity, "dissim_euclidean_SST.csv"))
 
 # Visualization
 p.dissim <- all.mirspectra.SST.dissim %>%

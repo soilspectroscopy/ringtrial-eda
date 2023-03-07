@@ -3,10 +3,7 @@
 library("tidyverse")
 library("readxl")
 library("purrr")
-library("stringr")
 library("prospectr")
-library("rstatix")
-library("corrplot")
 
 ## Folders
 mnt.dir <- "~/projects/mnt-ringtrial/"

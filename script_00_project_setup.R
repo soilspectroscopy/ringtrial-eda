@@ -3,7 +3,6 @@
 library("tidyverse")
 
 ## Creating input/output dirs
-if(!dir.exists("inputs")){dir.create("inputs")}
 if(!dir.exists("outputs")){dir.create("outputs")}
 
 ## Mounted disck for storing big files
@@ -20,3 +19,6 @@ if(!dir.exists("outputs/similarity")){dir.create("outputs/similarity")}
 
 ## Creating instances dir
 if(!dir.exists("outputs/instances")){dir.create("outputs/instances")}
+
+## Creating check_spectra dir
+if(!dir.exists(paste0(mnt.dir, "dissimilarity"))){dir.create(paste0(mnt.dir, "dissimilarity"))}
