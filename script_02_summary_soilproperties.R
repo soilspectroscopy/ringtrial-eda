@@ -9,7 +9,7 @@ mnt.dir <- "~/projects/mnt-ringtrial/"
 soil <- read_csv(paste0(mnt.dir, "preprocessed/RT_wetchem_soildata.csv"))
 
 summary.stats <- soil %>%
-  select(source, clay_perc, pH_H20, carbon_tot_perc, potassium_cmolkg) %>%
+  select(source, clay_perc, pH_H20, carbon_org_perc, potassium_cmolkg) %>%
   rename_with(~str_replace_all(., pattern = "_", replacement = ".")) %>%
   group_by(source) %>%
   summarise(across(everything(),
@@ -24,7 +24,7 @@ summary.stats <- soil %>%
   pivot_wider(names_from = "statistics", values_from = "value") %>%
   bind_rows({
     soil %>%
-      select(clay_perc, pH_H20, carbon_tot_perc, potassium_cmolkg) %>%
+      select(clay_perc, pH_H20, carbon_org_perc, potassium_cmolkg) %>%
       rename_with(~str_replace_all(., pattern = "_", replacement = ".")) %>%
       summarise(across(everything(),
                        .f = list(n = function(x, na.rm = T) {sum(!is.na(x), na.rm = na.rm)},
@@ -45,8 +45,8 @@ summary.stats <- soil %>%
 summary.stats
 
 summary.stats.log <- soil %>%
-  select(source, carbon_tot_perc, potassium_cmolkg) %>%
-  mutate(carbon_tot_perc = log(carbon_tot_perc),
+  select(source, carbon_org_perc, potassium_cmolkg) %>%
+  mutate(carbon_org_perc = log(carbon_org_perc),
          potassium_cmolkg = log(potassium_cmolkg)) %>%
   rename_with(~str_replace_all(., pattern = "_", replacement = ".")) %>%
   group_by(source) %>%
@@ -62,8 +62,8 @@ summary.stats.log <- soil %>%
   pivot_wider(names_from = "statistics", values_from = "value") %>%
   bind_rows({
     soil %>%
-      select(carbon_tot_perc, potassium_cmolkg) %>%
-      mutate(carbon_tot_perc = log(carbon_tot_perc),
+      select(carbon_org_perc, potassium_cmolkg) %>%
+      mutate(carbon_org_perc = log(carbon_org_perc),
              potassium_cmolkg = log(potassium_cmolkg)) %>%
       rename_with(~str_replace_all(., pattern = "_", replacement = ".")) %>%
       summarise(across(everything(),
