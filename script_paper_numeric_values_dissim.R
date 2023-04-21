@@ -61,6 +61,18 @@ all.mirspectra.SNV <- all.mirspectra.SNV %>%
 
 all.mirspectra.SNV
 
+## allMIRspectra SG1stDer
+
+all.mirspectra.SG1stDer <- read_csv(paste0(dir.preprocessed, "RT_STD_allMIRspectra_SG1stDer.csv"))
+
+all.mirspectra.SG1stDer <- all.mirspectra.SG1stDer %>%
+  mutate(organization = recode(organization, !!!new_codes)) %>%
+  mutate(organization = factor(organization, levels = as.character(new_codes))) %>%
+  mutate(prep_spectra = "SG1stDer", .after = 1) %>%
+  filter(sample_id %in% selected.ids)
+
+all.mirspectra.SG1stDer
+
 ## allMIRspectra SST
 
 all.mirspectra.SST <- read_csv(paste0(dir.preprocessed, "RT_STD_allMIRspectra_SST.csv"))
@@ -85,7 +97,8 @@ all.mirspectra.SST
 
 # All data
 
-all.mirspectra <- bind_rows(all.mirspectra.raw, all.mirspectra.SNV, all.mirspectra.SST)
+all.mirspectra <- bind_rows(all.mirspectra.raw, all.mirspectra.SNV,
+                            all.mirspectra.SG1stDer, all.mirspectra.SST)
 
 # Missing values because SNV and SST have a lower range due to smoothing
 # raw: 650-4000 cm-1, SNV/SST: 660-3990 cm-1
@@ -95,7 +108,8 @@ p.instance.all <- all.mirspectra %>%
                names_to = "wavenumber", values_to = "absorbance") %>%
   mutate(label = ifelse(organization == 16, "reference", "replicates")) %>%
   ggplot(aes(x = as.numeric(wavenumber), y = absorbance, group = organization)) +
-  geom_line(linewidth = 0.25, alpha = 0.5, show.legend = F) + facet_wrap(~prep_spectra, ncol = 1) +
+  geom_line(linewidth = 0.25, alpha = 0.5, show.legend = F) +
+  facet_wrap(~prep_spectra, ncol = 1, scale = "free_y") +
   labs(x = bquote(Wavenumber~(cm^-1)), y = bquote(Absorbance~(log[10]~units))) +
   scale_x_continuous(breaks = c(650, 1200, 1800, 2400, 3000, 3600, 4000),
                      trans = "reverse") +
@@ -137,6 +151,12 @@ all.mirspectra.SNV.dissim <- all.mirspectra.SNV.dissim %>%
   filter(sample_id %in% ids.test) %>%
   mutate(prep_spectra = "SNV", .after = 1)
 
+all.mirspectra.SG1stDer.dissim <- read_csv(paste0(dir.dissimilarity, "dissim_euclidean_SG1stDer.csv"))
+
+all.mirspectra.SG1stDer.dissim <- all.mirspectra.SG1stDer.dissim %>%
+  filter(sample_id %in% ids.test) %>%
+  mutate(prep_spectra = "SG1stDer", .after = 1)
+
 all.mirspectra.SST.dissim <- read_csv(paste0(dir.dissimilarity, "dissim_euclidean_SST.csv"))
 
 all.mirspectra.SST.dissim <- all.mirspectra.SST.dissim %>%
@@ -146,13 +166,14 @@ all.mirspectra.SST.dissim <- all.mirspectra.SST.dissim %>%
 
 all.dissim <- bind_rows(all.mirspectra.raw.dissim,
                         all.mirspectra.SNV.dissim,
+                        all.mirspectra.SG1stDer.dissim,
                         all.mirspectra.SST.dissim)
 
 p.dissim <- all.dissim %>%
   mutate(organization = as.factor(organization)) %>%
   ggplot(aes(x = organization, y = distance, group = organization)) +
   geom_boxplot(size = 0.25, show.legend = F, outlier.size = 0.25) +
-  facet_wrap(~prep_spectra, ncol = 1) +
+  facet_wrap(~prep_spectra, ncol = 1, scale = "free_y") +
   labs(x = "Instrument", y = "Euclidean distance") +
   theme_light() + ylim(0,3) +
   theme(legend.position = "bottom",
@@ -204,3 +225,9 @@ all.dissim %>%
   pivot_wider(names_from = "prep_spectra", values_from = "median") %>%
   select(organization, raw, SST) %>%
   mutate(decrease_raw_SST = (raw/SST-1)*100)
+
+## Comparison SNV to SG1stDer
+all.dissim %>%
+  group_by(prep_spectra) %>%
+  summarise(median = median(distance),
+            iqr = IQR(distance))
