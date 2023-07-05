@@ -1,18 +1,18 @@
 Soil spectroscopy ring trial
 ================
 
--   <a href="#overview" id="toc-overview">Overview</a>
--   <a href="#spectral-visualization"
-    id="toc-spectral-visualization">Spectral visualization</a>
--   <a href="#instances-check" id="toc-instances-check">Instances check</a>
--   <a href="#principal-component-analysis"
-    id="toc-principal-component-analysis">Principal component analysis</a>
--   <a href="#correlation-spectra" id="toc-correlation-spectra">Correlation
-    spectra</a>
--   <a href="#correlation-matrix" id="toc-correlation-matrix">Correlation
-    matrix</a>
--   <a href="#dissimilarity-analysis"
-    id="toc-dissimilarity-analysis">Dissimilarity analysis</a>
+- <a href="#overview" id="toc-overview">Overview</a>
+- <a href="#spectral-visualization"
+  id="toc-spectral-visualization">Spectral visualization</a>
+- <a href="#instances-check" id="toc-instances-check">Instances check</a>
+- <a href="#principal-component-analysis"
+  id="toc-principal-component-analysis">Principal component analysis</a>
+- <a href="#correlation-spectra" id="toc-correlation-spectra">Correlation
+  spectra</a>
+- <a href="#correlation-matrix" id="toc-correlation-matrix">Correlation
+  matrix</a>
+- <a href="#dissimilarity-analysis"
+  id="toc-dissimilarity-analysis">Dissimilarity analysis</a>
 
 ## Overview
 
@@ -28,10 +28,10 @@ The datasets were prepared to a target format in
 
 The workspace development is defined by:
 
--   GitHub repository:
-    [soilspectroscopy/ringtrial-eda](https://github.com/soilspectroscopy/ringtrial-eda).
--   Google Cloud storage for efficient file storage and access:
-    [whrc.org/soilcarbon-soilspec/storage/sc-ringtrial](https://console.cloud.google.com/storage/browser/sc-ringtrial).
+- GitHub repository:
+  [soilspectroscopy/ringtrial-eda](https://github.com/soilspectroscopy/ringtrial-eda).
+- Google Cloud storage for efficient file storage and access:
+  [whrc.org/soilcarbon-soilspec/storage/sc-ringtrial](https://console.cloud.google.com/storage/browser/sc-ringtrial).
 
 <img src="outputs/map_ring_trial.png" width=100% heigth=100%>
 
