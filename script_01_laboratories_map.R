@@ -34,7 +34,7 @@ ggplot() +
   geom_sf(data = points.robins, color = "darkblue") +
   labs(title = "MIR soil spectroscopy ring trial laboratories (n=20)",
        caption = "SoilSpec4GG is a USDA-funded FACT-CIN NIFA Award #2020-67021-32467 project.") +
-  theme(panel.grid.major = element_line(color = "black", linetype = "dashed", size = 0.1),
+  theme(panel.grid.major = element_line(color = "lightgray", linetype = "dashed", size = 0.1),
         # plot.background = element_rect(fill = "white"),
         plot.margin = unit(c(1, 1, 1, 1), "lines"),
         plot.title = element_text(hjust = 0.5),
